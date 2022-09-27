@@ -16,7 +16,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/")
-    public String viewAllUsers(Model model) {
+    public String printAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         return "/allUsers";
     }
@@ -33,7 +33,7 @@ public class UserController {
     }
 
     @GetMapping("/pages/{id}")
-    public String showUser(@PathVariable("id") int id, Model model) {
+    public String printUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "/show";
     }
