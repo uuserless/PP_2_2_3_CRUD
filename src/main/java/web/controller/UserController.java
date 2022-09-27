@@ -22,36 +22,36 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
+    public String getNewUser(@ModelAttribute("user") User user) {
         return "/new";
     }
 
     @PostMapping("/new")
-    public String addUser(@ModelAttribute("user") User user) {
+    public String setNewUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/";
     }
 
     @GetMapping("/pages/{id}")
-    public String printUser(@PathVariable("id") int id, Model model) {
+    public String printUserById(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUser(id));
         return "/show";
     }
 
     @GetMapping("/pages/{id}/edit")
-    private String editUser(Model model, @PathVariable("id") int id) {
+    private String getUpdatedUserData(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
         return "/edit";
     }
 
     @PutMapping("/pages/{id}/edit")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String setUpdatedUserData(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUser(id, user);
         return "redirect:/pages/{id}";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    public String deleteUserById(@PathVariable("id") int id) {
         userService.deleteUser(id);
         return "redirect:/";
     }
