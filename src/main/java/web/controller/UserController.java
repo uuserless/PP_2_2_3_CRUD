@@ -16,15 +16,9 @@ public class UserController {
     }
 
     @GetMapping(value = "/")
-    public String index(Model model) {
+    public String viewAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "/index";
-    }
-
-    @GetMapping("/pages/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.getUser(id));
-        return "/show";
+        return "/allUsers";
     }
 
     @GetMapping("/new")
@@ -33,9 +27,15 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String create(@ModelAttribute("user") User user) {
-        userService.createUser(user);
+    public String addUser(@ModelAttribute("user") User user) {
+        userService.addUser(user);
         return "redirect:/";
+    }
+
+    @GetMapping("/pages/{id}")
+    public String showUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("user", userService.getUser(id));
+        return "/show";
     }
 
     @GetMapping("/pages/{id}/edit")
@@ -44,10 +44,10 @@ public class UserController {
         return "/edit";
     }
 
-    @PatchMapping("/pages/{id}/edit")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    @PutMapping("/pages/{id}/edit")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUser(id, user);
-        return "redirect:/";
+        return "redirect:/pages/{id}";
     }
 
     @DeleteMapping("/{id}")

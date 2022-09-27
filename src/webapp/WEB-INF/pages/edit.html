@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form th:method="patch" th:action="@{/pages/{id}/edit(id=${user.getId()})}" th:object="${user}">
+<form th:method="put" th:action="@{/pages/{id}/edit(id=${user.getId()})}" th:object="${user}">
   <label for="name">Имя: </label>
   <input type="text" th:field="*{name}" id="name">
   <br/>

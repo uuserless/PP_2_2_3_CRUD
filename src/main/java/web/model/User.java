@@ -9,7 +9,6 @@ import javax.validation.constraints.NotEmpty;
 public class User {
 
     @Id
-    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NotEmpty
